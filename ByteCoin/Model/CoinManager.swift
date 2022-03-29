@@ -13,7 +13,7 @@ struct CoinManager {
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
     let apiKey = "405D3920-A6C4-491D-B1D7-02821C7CFEE9"
     
-    let currencyArray = ["AUD", "ARS", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    let currencyArray = ["ARS", "AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
     func getCoinPrice(for currency: String) {
         let urlString = "\(baseURL)/\(currency)?apikey=\(apiKey)"
@@ -27,7 +27,7 @@ struct CoinManager {
                 }
                 if let safeData = data {
                     if let bitcoinPrice = parseJSON(safeData) {
-                        let priceString = String(format: "%.2f", bitcoinPrice)
+                        let priceString = String(format: "%.0f", bitcoinPrice)
                         self.delegate?.didUpdatePrice(price: priceString, currency: currency)
                     }
                 }
